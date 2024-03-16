@@ -10,6 +10,7 @@
         "laravel-vite-plugin": "^1.0",
         "serverless-api-gateway-throttling": "^2.0.3",
         "serverless-domain-manager": "^7.3.8",
+        "serverless-lift": "^1.28.1",
         "vite": "^5.0"
     }
 }

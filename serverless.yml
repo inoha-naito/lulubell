@@ -7,6 +7,8 @@ provider:
   region: ap-northeast-1
   environment:
     APP_ENV: production
+    QUEUE_CONNECTION: sqs
+    SQS_QUEUE: ${construct:jobs.queueUrl}
   ecr:
     images:
       lulubell:
@@ -14,6 +16,9 @@ provider:
       lulubell-artisan:
         path: ./
         file: Dockerfile.artisan
+      lulubell-queue:
+        path: ./
+        file: Dockerfile.queue
 
 package:
   patterns:
@@ -35,8 +40,17 @@ functions:
       name: lulubell-artisan
     timeout: 720
 
+constructs:
+  jobs:
+    type: queue
+    worker:
+      image:
+        name: lulubell-queue
+      timeout: 900
+
 plugins:
   - ./vendor/bref/bref
+  - serverless-lift
   - serverless-domain-manager
   - serverless-api-gateway-throttling
 
