@@ -48,6 +48,7 @@ constructs:
       image:
         name: lulubell-queue
       timeout: 900
+      reservedConcurrency: 1
 
 plugins:
   - ./vendor/bref/bref
