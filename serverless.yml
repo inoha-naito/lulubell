@@ -30,3 +30,11 @@ functions:
 
 plugins:
   - ./vendor/bref/bref
+  - serverless-domain-manager
+
+custom:
+  customDomain:
+    domainName: lulubell.miraiportal.com
+    endpointType: REGIONAL
+    apiType: http
+    autoDomain: true
