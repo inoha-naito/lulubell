@@ -1,0 +1,32 @@
+service: lulubell
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  region: ap-northeast-1
+  environment:
+    APP_ENV: production
+
+package:
+  patterns:
+    - '!node_modules/**'
+    - '!public/storage'
+    - '!resources/assets/**'
+    - '!storage/**'
+    - '!tests/**'
+
+functions:
+  web:
+    handler: public/index.php
+    runtime: php-83-fpm
+    timeout: 28
+    events:
+      - httpApi: '*'
+  artisan:
+    handler: artisan
+    runtime: php-83-console
+    timeout: 720
+
+plugins:
+  - ./vendor/bref/bref
