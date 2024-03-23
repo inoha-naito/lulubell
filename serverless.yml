@@ -31,6 +31,7 @@ functions:
 plugins:
   - ./vendor/bref/bref
   - serverless-domain-manager
+  - serverless-api-gateway-throttling
 
 custom:
   customDomain:
@@ -38,3 +39,6 @@ custom:
     endpointType: REGIONAL
     apiType: http
     autoDomain: true
+  apiGatewayThrottling:
+    maxRequestsPerSecond: 1
+    maxConcurrentRequests: 1
