@@ -2,6 +2,8 @@ service: lulubell
 
 frameworkVersion: '3'
 
+useDotenv: true
+
 provider:
   name: aws
   region: ap-northeast-1
@@ -19,6 +21,11 @@ provider:
       lulubell-queue:
         path: ./
         file: Dockerfile.queue
+  vpc:
+    securityGroupIds:
+      Fn::Split: [',', '${env:LAMBDA_VPC_SECURITY_GROUP_IDS}']
+    subnetIds:
+      Fn::Split: [',', '${env:LAMBDA_VPC_SUBNET_IDS}']
 
 package:
   patterns:
