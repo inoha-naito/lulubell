@@ -7,7 +7,7 @@ provider:
   region: ap-northeast-1
   environment:
     APP_ENV: production
-    QUEUE_CONNECTION: sqs
+    QUEUE_CONNECTION: sqs-fifo
     SQS_QUEUE: ${construct:jobs.queueUrl}
   ecr:
     images:
@@ -43,6 +43,7 @@ functions:
 constructs:
   jobs:
     type: queue
+    fifo: true
     worker:
       image:
         name: lulubell-queue
